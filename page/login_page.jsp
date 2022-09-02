@@ -27,17 +27,17 @@
             </div>
             <form action="../module/login.jsp" method="post" class="login_form">
                 <div class="id_input_container">
-                    <input required type="text" name="id" minlength="6" maxlength="12" placeholder="abc123">
+                    <input type="text" name="id" minlength="6" maxlength="12" placeholder="abc123">
                 </div>
                 <div class="pw_input_container">
-                    <input required type="password" name="pw" minlength="8" maxlength="12" placeholder="*********">
+                    <input type="password" name="pw" minlength="8" maxlength="12" placeholder="*********">
                 </div>
                 <div class="page_move_btn_container">
                     <div class="signup_btn_container">
-                        <button onclick="clickSignupBtnEvent()">회원가입</button>
+                        <button type="button" onclick="clickSignupBtnEvent()">회원가입</button>
                     </div>
                     <div class="search_btn_container">
-                        <button onclick="clickSearchIdBtnEvent()">아이디찾기</button>/<button onclick="clickSearchPwBtnEvent()">비밀번호찾기</button>
+                        <button type="button" onclick="clickSearchIdBtnEvent()">아이디찾기</button>/<button type="button" onclick="clickSearchPwBtnEvent()">비밀번호찾기</button>
                     </div>
                 </div>
                 <div class="submit_btn_container">

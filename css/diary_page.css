@@ -1,0 +1,187 @@
+.diary_title_container{
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+}
+.diary_title_container h1,span{
+    font-size: 30px;
+    margin-right: 10px;
+    margin-left: 10px;
+    font-weight: bold;
+}
+.diary_title span{
+    display: flex;
+}
+.diary_title_container button{
+    border: none;
+    background-color: var(--main_color);
+    width: 40px;
+    height: 40px;
+}
+.diary_title{
+    display: flex;
+}
+.diary_container{
+    width: 100%;
+    background-color: var(--background_color2);
+    min-height: 1200px;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+/* 스케쥴 form ============================================================================= */
+.diary_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+.schedule_form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: calc(100% - 80px);
+    background-color: var(--background_color);
+    border-radius: 12px;
+}
+.schedule_form>div{
+    width: calc(100% - 40px);
+}
+.schedule_contents_input_container textarea{
+    resize: none;
+    border: none;
+    width: 100%;
+    height: 100px;
+    border-radius: 12px;
+    background-color: var(--background_color2);
+    margin-top: 10px;
+    padding:10px;
+}
+.schedule_submit_btn_container{
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+.schedule_submit_btn_container button{
+    border: none;
+    background: none;
+    border-radius: 6px;
+    background-color: var(--main_color);
+    color: white;
+    font-weight: bolder;
+    width: 80px;
+    height: 30px;
+}
+
+/* 다이어리 date 묶음 =================================================================== */
+.schedule_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc(100% - 80px);
+    background-color: var(--background_color);
+    border-radius: 12px;
+    margin-top: 20px;
+}
+.schedule_date_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+}
+.schedule_date_container>div{
+    width: calc(100% - 40px);
+}
+.schedule_date_title_container{
+    margin-top: 20px;
+    font-size: 30px;
+    font-weight: bolder;
+}
+.schedule_item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc(100% - 40px);
+    border-radius: 12px;
+    background-color: var(--background_color2);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 10px;
+}
+.schedule_item>div{
+    width: calc(100% - 40px);
+}
+.schedule_time_container{
+    font-size: 20px;
+    font-weight: bolder;
+    padding-left: 10px;
+}
+.schedule_contents_container{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    border-radius: 12px;
+    min-height: 60px;
+    background-color: var(--background_color);
+}
+.schedule_contents_container p{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: calc(100% - 20px);
+}
+.schedule_btn_container{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+.schedule_btn_container button{
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-weight: bolder;
+    width: 80px;
+    height: 30px;
+    margin-left: 10px;
+}
+.modify_schedule_btn{
+    background-color: var(--green_btn_color);
+}
+.delete_schedule_btn{
+    background-color: var(--red_btn_color);
+}
+
+
+
+
+
+
+
+@media screen and (min-width : 0px) and (max-width : 1000px){
+    .diary_title_container{
+        margin-left: 10px;
+        margin-bottom: 60px;
+    }
+    .diary_title span{
+        position: absolute;
+        flex-wrap: wrap;
+        width: 100%;
+        left: 0%;
+        transform:  translate(0,50px);
+    }
+    .schedule_form{
+        width: calc(100% - 20px);
+    }
+    .schedule_container{
+        width: calc(100% - 20px);
+    }
+}
+@media screen and (min-width : 1000px) and (max-width : 1200px){
+   
+}
+@media screen and (min-width : 1200px) {
+   
+}

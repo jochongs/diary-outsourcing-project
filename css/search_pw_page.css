@@ -1,20 +1,21 @@
-.signup_section{
+.search_pw_section{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.signup_title_container{
+.search_pw_title_container{
     text-align: center;
     font-size: 48px;
     margin-top: 120px;
 }
-.signup_form{
+.search_pw_form{
     display: flex;
     flex-direction: column;
     margin-top: 60px;
     max-width: 320px;
     width: 100%;
 }
+
 form>div{
     position: relative;
     display: flex;
@@ -35,26 +36,14 @@ form>div>div:nth-child(2) input,select{
 .input_name_container{
     font-size: 20px;
 }
-.input_container input,select{
+.input_container input{
     border: 2px solid var(--main_color);
     border-radius: 6px;
     padding-left: 10px;
 }
-.check_id_btn{
-    position: absolute;
-    right: 0%;
-    transform: translateX(110%);
-    height: 40px;
-    width: 100px;
-    border: none;
-    background:none;
-    border-radius: 6px;
-    color: white;
-    font-weight: bolder;
-    background-color: var(--main_color);
-}
 .submit_btn_container{
     width: 100%;
+    margin-top: 60px;
 }
 .submit_btn_container button{
     width : 100%;

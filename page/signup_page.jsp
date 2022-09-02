@@ -5,7 +5,43 @@
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.util.ArrayList" %>
 <% 
+    //받아오는 값에 대한 인코딩 지정
+    request.setCharacterEncoding("utf-8");
     
+    //데이터베이스연결
+    Class.forName("com.mysql.jdbc.Driver");
+    Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/diary","guest","1234");
+
+    //sql준비
+    String sql = "SELECT * FROM team";
+    PreparedStatement query = connect.prepareStatement(sql);
+    
+    //sql문 전송    
+    ResultSet result = query.executeQuery();
+
+    ArrayList<ArrayList<String>> teamData = new ArrayList<ArrayList<String>>();  //2차원 배열의 껍데기 생성
+    while(result.next()){
+        ArrayList<String> tmpData = new ArrayList<String>(); //2차원 배열에 들어갈 배열 생성
+        tmpData.add("\""+result.getString(1)+"\"");
+        tmpData.add("\""+result.getString(2)+"\"");
+        teamData.add(tmpData);
+    }
+
+    //sql준비
+    String sql2 = "SELECT * FROM position";
+    PreparedStatement query2 = connect.prepareStatement(sql2);
+    
+    //sql문 전송    
+    ResultSet result2 = query2.executeQuery();
+
+    ArrayList<ArrayList<String>> positionData = new ArrayList<ArrayList<String>>();  //2차원 배열의 껍데기 생성
+    while(result2.next()){
+        ArrayList<String> tmpData = new ArrayList<String>(); //2차원 배열에 들어갈 배열 생성
+        tmpData.add("\""+result2.getString(1)+"\"");
+        tmpData.add("\""+result2.getString(2)+"\"");
+        tmpData.add("\""+result2.getString(3)+"\"");
+        positionData.add(tmpData);
+    }
 %> 
 <head>
     <meta charset="UTF-8">
@@ -25,15 +61,15 @@
             <div class="signup_title_container">
                 <h1>회원가입</h1>
             </div>
-            <form action="../module/login.jsp" method="post" class="signup_form">
+            <form action="../module/signup.jsp" method="post" class="signup_form">
                 <div class="id_input_container">
                     <div class="input_name_container">
                         아이디
                     </div>
                     <div class="input_container">
-                        <input required type="text" name="id" placeholder="abc123" minlength="6" maxlength="12">
+                        <input required readonly  type="text" name="id" placeholder="아이디체크버튼을 눌러주세요" minlength="6" maxlength="12">
                     </div>
-                    <button class="check_id_btn" type="button">아이디체크</button>
+                    <button class="check_id_btn" type="button" onclick="clickCheckIdBtnEvent()">아이디체크</button>
                 </div>
                 <div class="pw_input_container">
                     <div class="input_name_container">
@@ -64,7 +100,7 @@
                         직급
                     </div>
                     <div class="input_container">
-                        <select name="position">
+                        <select name="position" class="position_select">
 
                         </select>
                     </div>
@@ -74,8 +110,7 @@
                         팀
                     </div>
                     <div class="input_container">
-                        <select name="team">
-                            <option value="">data</option>
+                        <select class="team_select" name="team">
                         </select>
                     </div>
                 </div>
@@ -85,4 +120,24 @@
             </form>
         </section>
     </main>
+    <script>
+        const teamArray = <%=teamData%>;
+        const teamSelect = document.querySelector(".team_select");
+        teamArray.map((team,index)=>{
+            const teamOption = document.createElement('option');
+            teamOption.value = team[0];
+            teamOption.innerText = team[1];
+            teamSelect.append(teamOption);
+        })
+
+        const positionArray = <%=positionData%>;
+        const positionSelect = document.querySelector('.position_select');
+        positionArray.map((position,index)=>{
+            const positionOption = document.createElement('option');
+            positionOption.value = position[0];
+            positionOption.innerText = position[2];
+            positionSelect.append(positionOption);
+        })
+    </script>
+    <script src="../js/signup_page.js"></script>
 </body>
