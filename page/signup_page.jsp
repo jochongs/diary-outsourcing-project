@@ -67,16 +67,17 @@
                         아이디
                     </div>
                     <div class="input_container">
-                        <input required readonly  type="text" name="id" placeholder="아이디체크버튼을 눌러주세요" minlength="6" maxlength="12">
+                        <input class="check_id_input" required type="text" name="check_id" placeholder="abc123" minlength="6" maxlength="12">
+                        <input type="hidden" value="none" class="hidden_id_input" name="id">
                     </div>
-                    <button class="check_id_btn" type="button" onclick="clickCheckIdBtnEvent()">아이디체크</button>
+                    <button class="check_id_btn" type="button" onclick="clickCheckIdBtnEvent()">중복확인</button>
                 </div>
                 <div class="pw_input_container">
                     <div class="input_name_container">
                         비밀번호
                     </div>
                     <div class="input_container">
-                        <input required type="password" name="pw" placeholder="********" minlength="8" maxlength="12">
+                        <input class="pw_input" required type="password" name="pw" placeholder="********" minlength="8" maxlength="12">
                     </div>
                 </div>
                 <div class="name_input_container">
@@ -84,7 +85,7 @@
                         이름
                     </div>
                     <div class="input_container">
-                        <input required type="text" name="name" placeholder="홍길동" minlength="1" maxlength="20">
+                        <input class="name_input" required type="text" name="name" placeholder="홍길동" minlength="1" maxlength="20">
                     </div>
                 </div>
                 <div class="phonenumber_input_container">
@@ -92,7 +93,7 @@
                         연락처
                     </div>
                     <div class="input_container">
-                        <input required type="text" name="name" placeholder="홍길동" minlength="1" maxlength="20">
+                        <input class="phone_number_input" required type="text" name="name" placeholder="홍길동" minlength="1" maxlength="20">
                     </div>
                 </div>
                 <div class="position_input_container">

@@ -1,0 +1,36 @@
+.id_check_title_container{
+    margin-top: 40px;
+    text-align: center;
+    font-size: 60px;
+    font-weight: bolder;
+}
+.id_check_title_container p{
+    font-size: 30px;
+    margin-top: 30px;
+}
+.id_check_btn_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.id_check_btn_container button,input{
+    width: 300px;
+    height: 40px;
+    margin-top: 20px;
+    border-radius: 6px;
+}
+.id_check_btn_container button{
+    border: none;
+    color: white;
+    font-weight: bolder;
+}
+.id_check_btn_container input{
+    border: 2px solid var(--main_color);
+    padding-left: 10px;
+}
+.use_other_id_btn{
+    background-color: var(--red_btn_color);
+}
+.use_id_btn{
+    background-color: var(--main_color);
+}
