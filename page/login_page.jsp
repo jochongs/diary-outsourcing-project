@@ -30,7 +30,7 @@
                     <input type="text" name="id" minlength="6" maxlength="12" placeholder="abc123">
                 </div>
                 <div class="pw_input_container">
-                    <input type="password" name="pw" minlength="8" maxlength="12" placeholder="*********">
+                    <input type="password" name="pw" maxlength="12" placeholder="*********">
                 </div>
                 <div class="page_move_btn_container">
                     <div class="signup_btn_container">

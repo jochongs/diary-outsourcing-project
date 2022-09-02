@@ -93,7 +93,7 @@
                         연락처
                     </div>
                     <div class="input_container">
-                        <input class="phone_number_input" required type="text" name="name" placeholder="홍길동" minlength="1" maxlength="20">
+                        <input class="phone_number_input" required type="text" name="phoneNumber" placeholder="-없이 입력" minlength="11" maxlength="11">
                     </div>
                 </div>
                 <div class="position_input_container">

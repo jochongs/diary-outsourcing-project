@@ -15,6 +15,38 @@ window.onload = ()=>{
         const position_code = positionSelect.options[teamSelect.selectedIndex].value;
 
         console.log(id,pw,name,phoneNumber,position_code,team_code);
+
+        const pwReg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,12}$/;
+        if(id==='none'){
+            alert("아이디 중복확인을 눌러주세요");
+            return 0;
+        }
+        if(pwReg.length === 0){
+            alert("비밀번호를 입력해야합니다.");
+            return 0;
+        }
+        if(!pwReg.test(pw)){
+            alert('비밀번호는 영문자와 특수기호,숫자가 섞인 8~12자 문자여야 합니다.');
+            return 0;
+        }
+        if(name.length === 0){
+            alert('이름을 입력해주세요');
+            return 0;
+        }
+        if(phoneNumber.length !== 11){
+            alert('핸드폰 번호를 정확하게 입력해주세요. -없이 11자리입니다.');
+            return 0;
+        }
+        if(position_code.length===0){
+            alert('직급을 선택해주세요');
+            return 0;
+        }
+        if(team_code.length === 0){
+            alert("팀을 선택해주세요");
+            return 0;
+        }
+        
+        form.submit();
     })
 }
 

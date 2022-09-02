@@ -4,8 +4,10 @@
 <%@ page import="java.sql.PreparedStatement" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.util.ArrayList" %>
+
+<%@ include file="../module/login_auth.jsp"%>
 <% 
-    
+    String userId = (String)session.getAttribute("userId");
 %> 
 <head>
     <meta charset="UTF-8">
