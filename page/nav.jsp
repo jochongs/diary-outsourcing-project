@@ -2,7 +2,7 @@
 <nav>
     <div class="nav_container">
         <div class="logout_btn_container">
-            <button>로그아웃</button>   
+            <button onclick="clickLogoutBtnEvent()">로그아웃</button>   
         </div>
         <div class="sidebar_btn_container">
             <button>-</button>

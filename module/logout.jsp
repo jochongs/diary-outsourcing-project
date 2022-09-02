@@ -3,5 +3,5 @@
     session.removeAttribute("userId");
 %> 
 <script>
-    location.href = "../page/login.jsp";
+    location.href = "../page/login_page.jsp";
 </script>
