@@ -8,33 +8,80 @@ const clickModifyScheduleBtnEvent = (e)=>{
     console.log(scheduleItem);
     [...scheduleItem.querySelectorAll('div')].map((div)=>{
         div.classList.add('hidden');
-    })
-    
-    //수정 버튼 생성
+    });
+    // [...document.querySelectorAll('.diary_container button')].map((button)=>{
+    //     button.classList.add('hidden');
+    // })
+
+    //수정완료 버튼 생성
     const modifyBtn = document.createElement('button');
     modifyBtn.classList.add('modify_schedule_btn');
-    modifyBtn.innerText = "일정수정";
+    modifyBtn.innerText = "수정완료";
     modifyBtn.type = "submit";
     modifyBtn.dataset.idx = idx;
-    modifyBtn.addEventListener('click',()=>{
-
+    modifyBtn.addEventListener('click',(e)=>{
+        
     });
     
-    //삭제 버튼 생성
+    //취소 버튼 생성
     const deleteBtn = document.createElement('button');
     deleteBtn.classList.add('delete_schedule_btn');
     deleteBtn.innerText = "취소";
     deleteBtn.type = "button";
     deleteBtn.dataset.idx = idx;
-    deleteBtn.addEventListener('click',()=>{
-        
+    deleteBtn.addEventListener('click',(e)=>{
+        scheduleItem.querySelector('form').remove();
+        //hidden 풀어줌
+        [...scheduleItem.querySelectorAll('div')].map((div)=>{
+            div.classList.remove('hidden');
+        });
     });
     
     //schedule_btn_container 생성
     const scheduleBtnContainer = document.createElement('div');
+    scheduleBtnContainer.classList.add('schedule_btn_container');
     scheduleBtnContainer.append(modifyBtn);
     scheduleBtnContainer.append(deleteBtn);
+
+    //textarea 생성
+    const textarea = document.createElement('textarea');
+    textarea.name = "contents"
+    textarea.value = scheduleItem.querySelector('.schedule_contents_container p').innerText;
     
+    //textarea contents container 생성
+    const scheduleContentsTextareaContainer = document.createElement('div');
+    scheduleContentsTextareaContainer.classList.add('schedule_contents_container');
+    scheduleContentsTextareaContainer.append(textarea);
+
+    //datetime input 생성
+    const datetimeInput = document.createElement('input');
+    datetimeInput.classList.add("datetime_input");
+    datetimeInput.name = "datetime";
+    datetimeInput.setAttribute('required',true);
+    datetimeInput.type = "datetime-local";
+                   //datetimeInput.value = "";
+ 
+    //datetime input  container 생성
+    const scheduleTimeContainer = document.createElement('div');
+    scheduleTimeContainer.classList.add('schedule_time_container');
+    scheduleTimeContainer.append(datetimeInput);
+
+    //hidden input 생성
+    const hiddenIdxInput = document.createElement('input');
+    hiddenIdxInput.value = idx;
+    hiddenIdxInput.name = "idx";
+    hiddenIdxInput.type = "hidden";
+
+    //form 생성
+    const form = document.createElement('form');
+    form.action="../module/modify_schedule.jsp";
+    form.append(scheduleTimeContainer);
+    form.append(scheduleContentsTextareaContainer);
+    form.append(scheduleBtnContainer);
+    form.append(hiddenIdxInput);
+
+    //form 삽입
+    scheduleItem.append(form);
 }
 
 const clickDeleteScheduleBtnEvent = ()=>{

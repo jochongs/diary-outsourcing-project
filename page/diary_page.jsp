@@ -116,7 +116,7 @@
                             2022년 08월 03일
                         </div>
                         <div class="schedule_item">
-                            <form action="">
+                            <form action="../module/modify_schedule.jsp">
                                 <div class="schedule_time_container">
                                     <input class="datetime_input" name="datetime" type="datetime-local" value="2022-02-02 12:00">
                                 </div>
