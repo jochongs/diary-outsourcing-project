@@ -84,19 +84,21 @@
     <link rel="stylesheet" href="../css/diary_page.css">
     <link rel="stylesheet" href="../css/layout.css">
     <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
     <title>다이어리 페이지</title>
 </head>
 <body>
-    <%@ include file="nav.jsp" %>
+    <%@ include file="../module/sidebar.jsp"%>
+    <%@ include file="../module/nav.jsp" %>
     <main>
         <section class="diary_section">
             <div class="diary_title_container">
-                <button class="move_before_month_btn"></button>
+                <button class="move_before_month_btn" onclick="clickMoveBeforePageBtnEvent('<%=selectedYear%>','<%=selectedMonth%>')"></button>
                 <div class="diary_title">
                     <h1><%=selectedYear%>년 <%=selectedMonth%>월</h1> 
                     <span>다이어리 <p>(<%=userData.get(1)%>)</p></span>
                 </div>
-                <button class="move_next_month_btn"></button>
+                <button class="move_next_month_btn" onclick="clickMoveNextPageBtnEvent('<%=selectedYear%>','<%=selectedMonth%>')"></button>
             </div>
             <div class="diary_container">
                 <form action="../module/add_schedule.jsp" class="schedule_form">
@@ -108,7 +110,7 @@
                         <textarea required name="contents" placeholder="일정 내용을 입력해주세요"></textarea>
                     </div>
                     <div class="schedule_submit_btn_container">
-                        <button>일정추가</button>
+                        <button type="submit">일정추가</button>
                     </div>
                 </form>
                 <div class="schedule_container">
@@ -136,8 +138,8 @@
             </div>
         </section>
     </main>
-    <script src="../js/nav.js"></script>
     <script src="../js/diary_page.js"></script>
+    <script src="../js/nav.js"></script>
     <script>
         addSchedule(<%=scheduleData%>);
     </script>

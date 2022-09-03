@@ -5,6 +5,9 @@
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.util.ArrayList" %>
 <% 
+    //받아오는 값에 대한 인코딩 지정
+    request.setCharacterEncoding("utf-8");
+
     //String 받아오기
     String id = request.getParameter("id");
     String pw = request.getParameter("pw");
@@ -12,9 +15,6 @@
     String phoneNumber = request.getParameter("phoneNumber");
     String position_code = request.getParameter("position");
     String team_code = request.getParameter("team");
-
-    //받아오는 값에 대한 인코딩 지정
-    request.setCharacterEncoding("utf-8");
     
     //데이터베이스연결
     Class.forName("com.mysql.jdbc.Driver");

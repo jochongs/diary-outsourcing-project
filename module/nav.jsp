@@ -5,7 +5,7 @@
             <button onclick="clickLogoutBtnEvent()">로그아웃</button>   
         </div>
         <div class="sidebar_btn_container">
-            <button>-</button>
+            <button onclick="openSidebar()">-</button>
         </div>
     </div>
 </nav>

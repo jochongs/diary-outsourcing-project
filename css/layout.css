@@ -22,6 +22,7 @@ h1,p,div,a,input,button{
 }
 body{
     margin: 0%;
+    overflow-x: hidden;
 }
 input:focus{
     outline: none;

@@ -157,6 +157,11 @@
 .delete_schedule_btn{
     background-color: var(--red_btn_color);
 }
+.empty{
+    font-size: 30px;
+    color: grey;
+    padding: 100px 0px;
+}
 
 /* 다이어리 아이템 수정========================================================================== */
 .schedule_contents_container textarea{
@@ -171,7 +176,6 @@
 .schedule_item form{
     width: calc(100% - 40px);
 }
-
 
 
 

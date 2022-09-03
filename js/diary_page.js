@@ -40,7 +40,7 @@ const clickModifyScheduleBtnEvent = (e)=>{
     scheduleBtnContainer.classList.add('schedule_btn_container');
     scheduleBtnContainer.append(modifyBtn);
     scheduleBtnContainer.append(deleteBtn);
-
+ㅇ
     //textarea 생성
     const textarea = document.createElement('textarea');
     textarea.name = "contents"
@@ -105,84 +105,126 @@ const setSheduleArray = (unorganizedScheduleArray)=>{
 }
 
 const addSchedule = (unorganizedScheduleArray)=>{
-    const year = (new Date(unorganizedScheduleArray[0][1]).getFullYear());
-    const month = (new Date(unorganizedScheduleArray[0][1]).getMonth())+1;
-    const scheduleArray = setSheduleArray(unorganizedScheduleArray);
-    scheduleArray.map((dateScheduleArray,date)=>{
-        if(dateScheduleArray.length !== 0){
-            //schedule date title container 생성
-            const scheduleDateTitleContainer = document.createElement('div');
-            scheduleDateTitleContainer.classList.add('schedule_date_title_container');
-            scheduleDateTitleContainer.innerText = `${year}년 ${month}월 ${date+1}일`;
+    if(unorganizedScheduleArray.length === 0){
+        const emptyP = document.createElement('p');
+        emptyP.classList.add('empty');
+        emptyP.innerText = "비어있음";
+        
+        const scheduleContainer = document.querySelector('.schedule_container');
+        scheduleContainer.append(emptyP);
+    }else{
+        const year = (new Date(unorganizedScheduleArray[0][1]).getFullYear());
+        const month = (new Date(unorganizedScheduleArray[0][1]).getMonth())+1;
+        const scheduleArray = setSheduleArray(unorganizedScheduleArray);
+        scheduleArray.map((dateScheduleArray,date)=>{
+            if(dateScheduleArray.length !== 0){
+                //schedule date title container 생성
+                const scheduleDateTitleContainer = document.createElement('div');
+                scheduleDateTitleContainer.classList.add('schedule_date_title_container');
+                scheduleDateTitleContainer.innerText = `${year}년 ${month}월 ${date+1}일`;
 
-            //schedule date container 생성
-            const scheduleDateContainer = document.createElement('div');
-            scheduleDateContainer.classList.add('schedule_date_container');
-            scheduleDateContainer.appendChild(scheduleDateTitleContainer);
-
-            //schedule item 생성
-            dateScheduleArray.map((schedule,index)=>{
-                //수정 버튼 생성
-                const modifyBtn = document.createElement('button');
-                modifyBtn.classList.add('modify_schedule_btn');
-                modifyBtn.innerText = "일정수정";
-                modifyBtn.dataset.idx = schedule[0];
-                modifyBtn.dataset.date = schedule[1];
-                modifyBtn.addEventListener('click',clickModifyScheduleBtnEvent);
-                
-                //삭제 버튼 생성
-                const deleteBtn = document.createElement('button');
-                deleteBtn.classList.add('delete_schedule_btn');
-                deleteBtn.innerText = "일정삭제";
-                deleteBtn.dataset.idx = schedule[0];
-                deleteBtn.dataset.date = schedule[1];
-                deleteBtn.addEventListener('click',clickDeleteScheduleBtnEvent);
-
-                //button container 생성
-                const scheduleBtnContainer = document.createElement('div');
-                scheduleBtnContainer.classList.add('schedule_btn_container');
-                scheduleBtnContainer.append(modifyBtn);
-                scheduleBtnContainer.append(deleteBtn);
-
-                //schedule contents 생성
-                const contentsP = document.createElement('p');
-                contentsP.innerText = schedule[2];
-
-                //schedule contents container 생성
-                const scheduleContentsContainer = document.createElement('div');
-                scheduleContentsContainer.classList.add('schedule_contents_container');
-                scheduleContentsContainer.append(contentsP);
-
-                //넣어줄 시간 값 생성
-                const scheduleDate = new Date(schedule[1]);
-                let timeString = "오전";
-                let hour = scheduleDate.getHours();
-                const minutes = scheduleDate.getMinutes();
-                if(hour >12){
-                    timeString = "오후";
-                    hour -= 12;
-                }
-
-                //schedule time container 생성
-                const scheduleTimeContainer = document.createElement('div');
-                scheduleTimeContainer.innerText = `${timeString} ${hour}시 ${minutes}분`;
-                scheduleTimeContainer.classList.add('schedule_time_container');
+                //schedule date container 생성
+                const scheduleDateContainer = document.createElement('div');
+                scheduleDateContainer.classList.add('schedule_date_container');
+                scheduleDateContainer.appendChild(scheduleDateTitleContainer);
 
                 //schedule item 생성
-                const scheduleItem = document.createElement('div');
-                scheduleItem.classList.add('schedule_item');
-                scheduleItem.classList.add(`schedule${schedule[0]}`);
-                scheduleItem.append(scheduleTimeContainer);
-                scheduleItem.append(scheduleContentsContainer);
-                scheduleItem.append(scheduleBtnContainer);
+                dateScheduleArray.map((schedule,index)=>{
+                    //수정 버튼 생성
+                    const modifyBtn = document.createElement('button');
+                    modifyBtn.classList.add('modify_schedule_btn');
+                    modifyBtn.innerText = "일정수정";
+                    modifyBtn.dataset.idx = schedule[0];
+                    modifyBtn.dataset.date = schedule[1];
+                    modifyBtn.addEventListener('click',clickModifyScheduleBtnEvent);
+                    
+                    //삭제 버튼 생성
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.classList.add('delete_schedule_btn');
+                    deleteBtn.innerText = "일정삭제";
+                    deleteBtn.dataset.idx = schedule[0];
+                    deleteBtn.dataset.date = schedule[1];
+                    deleteBtn.addEventListener('click',clickDeleteScheduleBtnEvent);
 
-                //item넣어주기
-                scheduleDateContainer.append(scheduleItem);
-            });
-            
-            //schedule container에 schedule date container 넣어주기
-            const scheduleContainer = document.querySelector('.schedule_container');
-            scheduleContainer.append(scheduleDateContainer);
-        }
-    })
+                    //button container 생성
+                    const scheduleBtnContainer = document.createElement('div');
+                    scheduleBtnContainer.classList.add('schedule_btn_container');
+                    scheduleBtnContainer.append(modifyBtn);
+                    scheduleBtnContainer.append(deleteBtn);
+
+                    //schedule contents 생성
+                    const contentsP = document.createElement('p');
+                    contentsP.innerText = schedule[2];
+
+                    //schedule contents container 생성
+                    const scheduleContentsContainer = document.createElement('div');
+                    scheduleContentsContainer.classList.add('schedule_contents_container');
+                    scheduleContentsContainer.append(contentsP);
+
+                    //넣어줄 시간 값 생성
+                    const scheduleDate = new Date(schedule[1]);
+                    let timeString = "오전";
+                    let hour = scheduleDate.getHours();
+                    const minutes = scheduleDate.getMinutes();
+                    if(hour >12){
+                        timeString = "오후";
+                        hour -= 12;
+                    }
+
+                    //schedule time container 생성
+                    const scheduleTimeContainer = document.createElement('div');
+                    scheduleTimeContainer.innerText = `${timeString} ${hour}시 ${minutes}분`;
+                    scheduleTimeContainer.classList.add('schedule_time_container');
+
+                    //schedule item 생성
+                    const scheduleItem = document.createElement('div');
+                    scheduleItem.classList.add('schedule_item');
+                    scheduleItem.classList.add(`schedule${schedule[0]}`);
+                    scheduleItem.append(scheduleTimeContainer);
+                    scheduleItem.append(scheduleContentsContainer);
+                    scheduleItem.append(scheduleBtnContainer);
+
+                    //item넣어주기
+                    scheduleDateContainer.append(scheduleItem);
+                });
+                
+                //schedule container에 schedule date container 넣어주기
+                const scheduleContainer = document.querySelector('.schedule_container');
+                scheduleContainer.append(scheduleDateContainer);
+            }
+        });
+    }   
 }
+
+const clickMoveBeforePageBtnEvent = (selectedYear,selectedMonth)=>{
+    let year = parseInt(selectedYear);
+    let month = parseInt(selectedMonth)
+    if(year=== 1970 && month === 1){
+        alert('더 이전 다이어리를 볼 수 없습니다.');
+        return 0;
+    }
+    if(month - 1 <=0){
+        year = year - 1;
+        month = 12;
+    }else{
+        month -= 1;
+    }
+    location.href = `../page/diary_page.jsp?month=${month}&year=${year}`
+}
+
+const clickMoveNextPageBtnEvent = (selectedYear,selectedMonth)=>{
+    let year = parseInt(selectedYear);
+    let month = parseInt(selectedMonth)
+    if(year=== 2038 && month === 1){
+        alert('더 이후 다이어리는 볼 수 없습니다.');
+        return 0;
+    }
+    if(month + 1 > 12){
+        year = year + 1;
+        month = 1;
+    }else{
+        month += 1;
+    }
+    location.href = `../page/diary_page.jsp?month=${month.toString().padStart(2,0)}&year=${year.toString().padStart(4,0)}`
+}
+
