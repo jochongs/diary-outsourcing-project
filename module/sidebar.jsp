@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html" pageEncoding="utf-8"%>
 <%  
     //sql준비
-    String sidebarSql = "SELECT * FROM account JOIN position ON position_code=code JOIN team ON account.team_code=team.code ORDER BY team_code,position.number";
+    String sidebarSql = "SELECT id,account.name,account.team_code,team.name,position.name,position.number FROM account JOIN position ON position_code=position.code JOIN team ON account.team_code=team.code ORDER BY team_code,position.number";
     PreparedStatement sidebarQuery = connect.prepareStatement(sidebarSql);
 
     //sql문 전송    
@@ -15,6 +15,8 @@
         tmpData.add("\""+sidebarResult.getString(2)+"\"");
         tmpData.add("`"+sidebarResult.getString(3)+"`");
         tmpData.add("\""+sidebarResult.getString(4)+"\"");
+        tmpData.add("\""+sidebarResult.getString(5)+"\"");
+        tmpData.add("\""+sidebarResult.getString(6)+"\"");
         sidebarAccountData.add(tmpData);
     }
 %> 
@@ -29,7 +31,7 @@
         <div class="move_my_diary_btn_container">
             <button class="move_my_diary_btn">내 다이어리 보기</button>
         </div>
-        <div class="team_container">
+        <!-- <div class="team_container">
             <div class="team_title_container">
                 <button><span class="team_name">개발1팀</span>-<span class="team_leader_name">홍길동</span></button>
             </div>
@@ -38,11 +40,11 @@
                     <button ><span class="member_position">대리</span>-<span class="member_name">민경찬</span></button>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 
 <script src="../js/sidebar.js"></script>
 <script>
-    addMember(<%=sidebarAccountData%>);
+    addMember(<%=sidebarAccountData%>,`<%=userPositionNumber%>`,`<%=userTeamCode%>`);
 </script>

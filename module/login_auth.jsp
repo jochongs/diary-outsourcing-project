@@ -5,7 +5,6 @@
         loginAuth = false;
     }
 %>  
-
 <script>
     const loginAuth = <%=loginAuth%>;
     if(loginAuth === false){

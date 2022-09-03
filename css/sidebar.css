@@ -90,8 +90,9 @@
     font-weight: bolder;
 }
 .team_title_container span{
-    padding-left: 10px;
     font-size: 28px;
+    margin: 0%;
+    margin-left: 10px;
 }
 
 .team_member_container{
@@ -110,4 +111,5 @@
 }
 .team_member_item span{
     font-size: 16px;
+    margin: 0%;
 }

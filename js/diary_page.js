@@ -196,9 +196,10 @@ const addSchedule = (unorganizedScheduleArray)=>{
     }   
 }
 
-const clickMoveBeforePageBtnEvent = (selectedYear,selectedMonth)=>{
+const clickMoveBeforePageBtnEvent = (selectedYear,selectedMonth,diaryUserId)=>{
     let year = parseInt(selectedYear);
-    let month = parseInt(selectedMonth)
+    let month = parseInt(selectedMonth);
+    const seletedUser = (new URLSearchParams(location.search)).get('selectedUser');
     if(year=== 1970 && month === 1){
         alert('더 이전 다이어리를 볼 수 없습니다.');
         return 0;
@@ -209,12 +210,17 @@ const clickMoveBeforePageBtnEvent = (selectedYear,selectedMonth)=>{
     }else{
         month -= 1;
     }
-    location.href = `../page/diary_page.jsp?month=${month}&year=${year}`
+    let address = `../page/diary_page.jsp?month=${month.toString().padStart(2,0)}&year=${year.toString().padStart(4,0)}`;
+    if(seletedUser !== null){
+        address += `&selectedUser=${seletedUser}`;
+    }
+    location.href = address;
 }
 
 const clickMoveNextPageBtnEvent = (selectedYear,selectedMonth)=>{
     let year = parseInt(selectedYear);
-    let month = parseInt(selectedMonth)
+    let month = parseInt(selectedMonth);
+    const seletedUser = (new URLSearchParams(location.search)).get('selectedUser');
     if(year=== 2038 && month === 1){
         alert('더 이후 다이어리는 볼 수 없습니다.');
         return 0;
@@ -225,6 +231,22 @@ const clickMoveNextPageBtnEvent = (selectedYear,selectedMonth)=>{
     }else{
         month += 1;
     }
-    location.href = `../page/diary_page.jsp?month=${month.toString().padStart(2,0)}&year=${year.toString().padStart(4,0)}`
+    let address = `../page/diary_page.jsp?month=${month.toString().padStart(2,0)}&year=${year.toString().padStart(4,0)}`;
+    if(seletedUser !== null){
+        address += `&selectedUser=${seletedUser}`;
+    }
+    location.href = address;
 }
 
+const viewDiaryAuth = (auth)=>{
+    if(auth === false){
+        alert("다이어리를 볼 권한이 없습니다.");
+        location.href = "../page/diary_page.jsp";
+    }
+}
+
+const viewStateSet = (viewState)=>{
+    if(viewState){
+        document.querySelector('.schedule_form').remove();
+    }
+}
