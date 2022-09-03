@@ -67,9 +67,10 @@
         ArrayList<String> tmpData = new ArrayList<String>(); //2차원 배열에 들어갈 배열 생성
         tmpData.add("\""+result2.getString(1)+"\"");
         tmpData.add("\""+result2.getString(2)+"\"");
-        tmpData.add("\""+result2.getString(3)+"\"");
+        tmpData.add("`"+result2.getString(3)+"`");
         tmpData.add("\""+result2.getString(4)+"\"");
         scheduleData.add(tmpData);
+        //scheduleResultString = scheduleResultString + "[\`"+result2.getString(1)+"\`" +","+"\""+result2.getString(2)+"\""+","+"\""+result2.getString(3)+"\""+","+"\""+result2.getString(4)+"\""+"],";
     }
 %>
 <head>
@@ -111,7 +112,8 @@
                     </div>
                 </form>
                 <div class="schedule_container">
-                    <div class="schedule_date_container">
+                    <!-- modify input form 동적 생성을 위한 예시 div
+                        <div class="schedule_date_container">
                         <div class="schedule_date_title_container">
                             2022년 08월 03일
                         </div>
@@ -129,7 +131,7 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </section>

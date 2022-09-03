@@ -1,7 +1,8 @@
-
+//수정버튼 클릭시
 const clickModifyScheduleBtnEvent = (e)=>{
     //schedule의 idx값
     const idx = e.target.dataset.idx;
+    const date = new Date(e.target.dataset.date);
 
     //hidden처리 
     const scheduleItem = document.querySelector(`.schedule${idx}`);
@@ -19,9 +20,6 @@ const clickModifyScheduleBtnEvent = (e)=>{
     modifyBtn.innerText = "수정완료";
     modifyBtn.type = "submit";
     modifyBtn.dataset.idx = idx;
-    modifyBtn.addEventListener('click',(e)=>{
-        
-    });
     
     //취소 버튼 생성
     const deleteBtn = document.createElement('button');
@@ -59,6 +57,8 @@ const clickModifyScheduleBtnEvent = (e)=>{
     datetimeInput.name = "datetime";
     datetimeInput.setAttribute('required',true);
     datetimeInput.type = "datetime-local";
+    datetimeInputValue = `${date.getFullYear()}-${(date.getMonth()+1).toString().padStart(2,0)}-${date.getDate().toString().padStart(2,0)}T${date.getHours().toString().padStart(2,0)}:${date.getMinutes().toString().padStart(2,0)}`;
+    datetimeInput.value = datetimeInputValue;
                    //datetimeInput.value = "";
  
     //datetime input  container 생성
@@ -84,8 +84,10 @@ const clickModifyScheduleBtnEvent = (e)=>{
     scheduleItem.append(form);
 }
 
-const clickDeleteScheduleBtnEvent = ()=>{
-    console.log('hi');
+const clickDeleteScheduleBtnEvent = (e)=>{
+    if(confirm("정말 삭제하시겠습니까?")){
+        location.href = `../module/delete_schedule.jsp?date=${e.target.dataset.date}&idx=${e.target.dataset.idx}`;
+    }
 }
 
 const setSheduleArray = (unorganizedScheduleArray)=>{
@@ -125,6 +127,7 @@ const addSchedule = (unorganizedScheduleArray)=>{
                 modifyBtn.classList.add('modify_schedule_btn');
                 modifyBtn.innerText = "일정수정";
                 modifyBtn.dataset.idx = schedule[0];
+                modifyBtn.dataset.date = schedule[1];
                 modifyBtn.addEventListener('click',clickModifyScheduleBtnEvent);
                 
                 //삭제 버튼 생성
@@ -132,6 +135,7 @@ const addSchedule = (unorganizedScheduleArray)=>{
                 deleteBtn.classList.add('delete_schedule_btn');
                 deleteBtn.innerText = "일정삭제";
                 deleteBtn.dataset.idx = schedule[0];
+                deleteBtn.dataset.date = schedule[1];
                 deleteBtn.addEventListener('click',clickDeleteScheduleBtnEvent);
 
                 //button container 생성
