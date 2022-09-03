@@ -28,3 +28,10 @@
     //sql문 전송    
     query.executeUpdate();
 %> 
+
+<script>
+    const date = new Date("<%=datetime%>");
+    const month = (date.getMonth()+1).toString().padStart(2,0);
+    const year = date.getFullYear().toString().padStart(4,0);
+    location.href = '../page/diary_page.jsp?year'+year+'&month='+month;
+</script>

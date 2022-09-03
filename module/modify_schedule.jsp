@@ -33,8 +33,9 @@
     //sql문 전송    
     query.executeUpdate();
 
-    String month = new java.text.SimpleDateFormat("MM").parse(datetime);
-    String year = new java.text.SimpleDateFormat("yyyy").parse(datetime);
+    //Date date = new Date(datetime);
+    // String month = new java.text.SimpleDateFormat("MM").parse(datetime);
+    // String year = new java.text.SimpleDateFormat("yyyy").parse(datetime);
 %>
 
 <script>
@@ -42,4 +43,5 @@
     const month = (date.getMonth()+1).toString().padStart(2,0);
     const year = date.getFullYear().toString().padStart(2,0);
     location.href = '../page/diary_page.jsp?year'+year+'&month='+month;
+    
 </script>
