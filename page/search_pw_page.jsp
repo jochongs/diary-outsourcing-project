@@ -25,13 +25,13 @@
             <div class="search_pw_title_container">
                 <h1>비밀번호찾기</h1>
             </div>
-            <form action="../module/search_id.jsp" method="post" class="search_pw_form">
+            <form action="../module/search_pw.jsp" method="post" class="search_pw_form">
                 <div class="phonenumber_input_container">
                     <div class="input_name_container">
                         아이디
                     </div>
                     <div class="input_container">
-                        <input required type="text" name="text" placeholder="abc123" minlength="6" maxlength="12">
+                        <input required type="text" name="id" placeholder="abc123" minlength="6" maxlength="12">
                     </div>
                 </div>
                 <div class="phonenumber_input_container">
@@ -39,7 +39,7 @@
                         연락처
                     </div>
                     <div class="input_container">
-                        <input required type="text" name="text" placeholder="-없이" minlength="11" maxlength="11">
+                        <input required type="text" name="phone_number" placeholder="-없이" minlength="11" maxlength="11">
                     </div>
                 </div>
                 <div class="submit_btn_container">
