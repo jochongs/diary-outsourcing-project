@@ -1,31 +1,6 @@
-const closeSidebar = ()=>{
-    document.querySelector('.sidebar_background').classList.add('unactive');
-    document.querySelector('.sidebar_background').classList.remove('active');
-
-    document.querySelector('.sidebar_container').classList.add('unactive');
-    document.querySelector('.sidebar_container').classList.remove('active');
-
-    document.body.style.overflowY = "unset";
-}
-
-const openSidebar = ()=>{   
-    document.querySelector('.sidebar_background').classList.add('active');
-    document.querySelector('.sidebar_background').classList.remove('unactive');
-
-    document.querySelector('.sidebar_container').classList.add('active');
-    document.querySelector('.sidebar_container').classList.remove('unactive');
-
-    document.body.style.overflowY = "hidden";
-}
-
-const clickSidebarBackgroundEvent = ()=>{
-    closeSidebar();
-}
-
+//sidebar에 멤버를 정렬해서 넣어주는 함수
 const addMember = (unorganizedMemberArray,userPositionNumber,userTeamCode)=>{
-    console.log(userPositionNumber,userTeamCode);
     const organizedMemeberArray = setAccountArray(unorganizedMemberArray);
-    console.log(organizedMemeberArray);
     organizedMemeberArray.map((teamObject)=>{
         //팀 데이터
         const teamName = teamObject.teamName;
@@ -34,6 +9,7 @@ const addMember = (unorganizedMemberArray,userPositionNumber,userTeamCode)=>{
         //팀 리더 데이터
         const teamLeaderName = teamObject.memberArray[0][1];
         const teamLeaderPositionNumber = teamObject.memberArray[0][5];
+        const teamLeaderId = teamObject.memberArray[0][0];
  
         //team span생성
         const teamSpan = document.createElement('span');
@@ -52,6 +28,7 @@ const addMember = (unorganizedMemberArray,userPositionNumber,userTeamCode)=>{
         if(userPositionNumber < teamLeaderPositionNumber || (userPositionNumber===teamLeaderPositionNumber&&userTeamCode===teamCode)){
             teamLeaderBtn.addEventListener('click',()=>{
                 //세션에 데이터를 저장하던지 post로 데이터를 보내주던지 하는 거 있고 이 사람 다이어리로 이동하게 하는 그런 거
+                location.href = `../page/diary_page.jsp?selectedUser=${teamLeaderId}`;
             })
         }
 
@@ -72,7 +49,7 @@ const addMember = (unorganizedMemberArray,userPositionNumber,userTeamCode)=>{
         //멤버 아이템을 만들어서 팀 멤버 컨테이너에 삽입
         teamObject.memberArray.map((member,index)=>{
             //멤버의 데이터 저장
-            const memeberId = member[0];
+            const memberId = member[0];
             const memberName = member[1];
             const memberTeamCode = member[2];
             const memberTeamName = member[3];
@@ -93,6 +70,13 @@ const addMember = (unorganizedMemberArray,userPositionNumber,userTeamCode)=>{
             const button = document.createElement('button');
             button.append(memberPositionSpan);
             button.append(memberNameSpan);
+            if(userPositionNumber < 1 || (userPositionNumber ==1 &&  memberTeamCode==userTeamCode)){
+                //button에 클릭 이벤트 생성
+                button.addEventListener('click',()=>{
+                    location.href = `../page/diary_page.jsp?selectedUser=${memberId}`;
+                });
+                button.classList.add('active');
+            }
 
             //member item div 생성
             const memberItem = document.createElement('div');
@@ -111,6 +95,11 @@ const addMember = (unorganizedMemberArray,userPositionNumber,userTeamCode)=>{
     })
 }
 
+/**데이터베이스에서 가져온 2차원 acocunt데이터를 team단위로 정렬시켜 return해주는 함수
+ * 
+ * @param {*} unorganizedMemberArray 데이터베이스에서 가져온 2차원 account 데이터
+ * @returns team단위로 정렬된 account 데이터
+ */
 const setAccountArray = (unorganizedMemberArray)=>{
     console.log(unorganizedMemberArray);
     const organizedMemeberArray = [];
@@ -139,9 +128,34 @@ const setAccountArray = (unorganizedMemberArray)=>{
     return organizedMemeberArray;
 }
 
-const Array = [
-    {
-        teamCode : "",
-        teamMember : [],
-    }
-]
+//sidebar를 열어주는 함수
+const closeSidebar = ()=>{
+    document.querySelector('.sidebar_background').classList.add('unactive');
+    document.querySelector('.sidebar_background').classList.remove('active');
+
+    document.querySelector('.sidebar_container').classList.add('unactive');
+    document.querySelector('.sidebar_container').classList.remove('active');
+
+    document.body.style.overflowY = "unset";
+}
+
+//sidebar를 닫아주는 함수
+const openSidebar = ()=>{   
+    document.querySelector('.sidebar_background').classList.add('active');
+    document.querySelector('.sidebar_background').classList.remove('unactive');
+
+    document.querySelector('.sidebar_container').classList.add('active');
+    document.querySelector('.sidebar_container').classList.remove('unactive');
+
+    document.body.style.overflowY = "hidden";
+}
+
+//내 다이어리로 이동 버튼 클릭 이벤트
+const clickMoveMydiaryBtnEvent = ()=>{
+    location.href = "../page/diary_page.jsp";
+}
+
+//sidebar배경 클릭 이벤트
+const clickSidebarBackgroundEvent = ()=>{
+    closeSidebar();
+}

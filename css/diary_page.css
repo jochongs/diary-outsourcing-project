@@ -14,10 +14,25 @@
     display: flex;
 }
 .diary_title_container button{
-    border: none;
-    background-color: var(--main_color);
-    width: 40px;
-    height: 40px;
+    background: none;
+    margin: 0%;
+    padding: 0%;
+}
+.move_before_month_btn{
+    width: 0%;
+    height: 0;
+    border-right: 40px solid var(--main_color);
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: none;
+}
+.move_next_month_btn{
+    width: 0%;
+    height: 0;
+    border-left: 40px solid var(--main_color);
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right: none;
 }
 .diary_title{
     display: flex;
@@ -25,7 +40,6 @@
 .diary_container{
     width: 100%;
     background-color: var(--background_color2);
-    min-height: 1200px;
     border-radius: 12px;
     margin-top: 20px;
 }
@@ -79,7 +93,7 @@
     height: 30px;
 }
 
-/* 다이어리 date 묶음 =================================================================== */
+/* schedule  container =================================================================== */
 .schedule_container{
     display: flex;
     flex-direction: column;
@@ -124,6 +138,9 @@
     font-weight: bolder;
     padding-left: 10px;
 }
+.shedule_termination .schedule_time_container{
+    text-decoration: line-through;
+}
 .schedule_contents_container{
     display: flex;
     justify-content: center;
@@ -136,6 +153,9 @@
     margin-top: 10px;
     margin-bottom: 10px;
     width: calc(100% - 20px);
+}
+.shedule_termination p{
+    text-decoration: line-through;
 }
 .schedule_btn_container{
     display: flex;

@@ -29,7 +29,7 @@
     </div>
     <div class="sidebar_main">
         <div class="move_my_diary_btn_container">
-            <button class="move_my_diary_btn">내 다이어리 보기</button>
+            <button class="move_my_diary_btn" onclick="clickMoveMydiaryBtnEvent()">내 다이어리 보기</button>
         </div>
         <!-- <div class="team_container">
             <div class="team_title_container">

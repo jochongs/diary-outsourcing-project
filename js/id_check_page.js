@@ -1,3 +1,4 @@
+//아이디를 체크해주는 함수
 const checkIdFunc = (checkId,id)=>{
     if(checkId){
         //아이디를 사용할 수 있으면

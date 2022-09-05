@@ -16,46 +16,45 @@
     Class.forName("com.mysql.jdbc.Driver");
     Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/diary","guest","1234");
 
-
     //값 불러오기
     String userId = (String)session.getAttribute("userId");
     String selectedUser = request.getParameter("selectedUser");
     String selectedUserName = ""; //선택된 유저의 이름
-    String diaryUserName = "";
-    String diaryUserId = "";
+    String diaryUserName = ""; //현재 볼 다이어리 유저 이름
+    String diaryUserId = ""; //현재 볼 다이어리 유저 아이디
     boolean viewAuth = false;
     boolean viewState = false; //false : 내 것을 보고 있음 , true : 다른 사람 것을 보고 있음
     String selectedUserPositionNumber = "255";
-    String selectedUserTeamCode = "";
+    ArrayList<ArrayList<String>> scheduleData = new ArrayList<ArrayList<String>>();  //2차원 배열의 껍데기 생성
 
-    if(selectedUser == null){
+    if(selectedUser == null || selectedUser.equals(userId)){
+        //선택된 유저가 없거나 선택된 유저가 내 아이디랑 같을 경우
         diaryUserId = userId;
         viewAuth = true;
     }else{
+        //선택된 유저가 있을경우
         String sql3 = "SELECT id,account.name,position.number,team_code FROM account JOIN position ON account.position_code=position.code WHERE id=? ";
         PreparedStatement query3 = connect.prepareStatement(sql3);
         query3.setString(1, selectedUser);
 
-        //sql문 전송    
         ResultSet result3 = query3.executeQuery();
         
         while(result3.next()){
             selectedUserPositionNumber = result3.getString(3);
-            selectedUserTeamCode = result3.getString(4);
             selectedUserName = result3.getString(2);
         }
         diaryUserId = selectedUser;
     }
 
-    //sql준비
+
+
+    //로그인된 사용자의 정보를 가져옴
     String sql = "SELECT id,account.name,position.number,team_code FROM account JOIN position ON account.position_code=position.code WHERE id=? ";
     PreparedStatement query = connect.prepareStatement(sql);
     query.setString(1, userId);
 
-    //sql문 전송    
     ResultSet result = query.executeQuery();
      
-    //2차원 결과 배열 생성
     ArrayList<String> userData = new ArrayList<String>(); 
     String userPositionNumber = "255";
     String userTeamCode = "";
@@ -68,6 +67,8 @@
         userTeamCode = result.getString(4);
     }
 
+
+
     //권한 확인
     if(viewAuth==false && Integer.parseInt(userPositionNumber) < Integer.parseInt(selectedUserPositionNumber)){
         viewAuth = true;
@@ -76,26 +77,27 @@
         diaryUserName = selectedUserName;
     }
 
-    ArrayList<ArrayList<String>> scheduleData = new ArrayList<ArrayList<String>>();  //2차원 배열의 껍데기 생성
+
+
+
+    //다이어리 데이터 가져오기 
     String selectedMonth = request.getParameter("month");
     String selectedYear = request.getParameter("year");
+    //년월 파라미터 가져오기
+    if(selectedMonth == null){
+        selectedMonth = new java.text.SimpleDateFormat("MM").format(new java.util.Date());
+    }
+    if(selectedYear == null){
+        selectedYear = new java.text.SimpleDateFormat("yyyy").format(new java.util.Date());
+    }
     if(viewAuth == true){
-        //년월 파라미터 가져오기
-        if(selectedMonth == null){
-            selectedMonth = new java.text.SimpleDateFormat("MM").format(new java.util.Date());
-        }
-        if(selectedYear == null){
-            selectedYear = new java.text.SimpleDateFormat("yyyy").format(new java.util.Date());
-        }
-
-        //sql준비
+        //선택된 유저의 다이어리를 볼 권한이 있다면
         String sql2 = "SELECT * FROM schedule WHERE DATE_FORMAT(date,'%Y-%m') BETWEEN ? AND ? AND author=? ORDER BY date";
         PreparedStatement query2 = connect.prepareStatement(sql2);
         query2.setString(1, selectedYear+"-"+selectedMonth);
         query2.setString(2, selectedYear+"-"+selectedMonth);
         query2.setString(3, diaryUserId);
         
-        //sql문 전송    
         ResultSet result2 = query2.executeQuery();
         
         while(result2.next()){
@@ -108,7 +110,6 @@
             //scheduleResultString = scheduleResultString + "[\`"+result2.getString(1)+"\`" +","+"\""+result2.getString(2)+"\""+","+"\""+result2.getString(3)+"\""+","+"\""+result2.getString(4)+"\""+"],";
         }
     }
-    
 %>
 <head>
     <meta charset="UTF-8">
@@ -124,7 +125,7 @@
     <link rel="stylesheet" href="../css/sidebar.css">
     <title>다이어리 페이지</title>
 </head>
-<body>
+<body style="overflow-x:hidden">
     <%@ include file="../module/sidebar.jsp"%>
     <%@ include file="../module/nav.jsp" %>
     <main>
@@ -179,7 +180,7 @@
     <script src="../js/nav.js"></script>
     <script>
         addSchedule(<%=scheduleData%>);
-        //viewDiaryAuth(<%=viewAuth%>);
+        viewDiaryAuth(<%=viewAuth%>);
         viewStateSet(<%=viewState%>);
         console.log('<%=userPositionNumber%>','<%=selectedUserPositionNumber%>')
     </script>

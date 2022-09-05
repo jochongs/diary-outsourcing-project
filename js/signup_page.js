@@ -1,3 +1,4 @@
+//윈도우 로드시
 window.onload = ()=>{
     const form = document.querySelector('.signup_form');
     form.addEventListener('submit',(e)=>{
@@ -50,6 +51,7 @@ window.onload = ()=>{
     })
 }
 
+//아이디 체크 버튼 클릭 이벤트
 const clickCheckIdBtnEvent = ()=>{
     const check_id = document.querySelector('.check_id_input').value;
     if(check_id.length === 0){
