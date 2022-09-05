@@ -1,9 +1,4 @@
 <%@ page language="java" contentType="text/html" pageEncoding="utf-8"%>
-<%@ page import="java.sql.DriverManager" %>
-<%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.PreparedStatement" %>
-<%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.util.ArrayList" %>
 <% 
     
 %> 
@@ -31,7 +26,7 @@
                         연락처
                     </div>
                     <div class="input_container">
-                        <input required type="text" name="text" placeholder="-없이" minlength="11" maxlength="11">
+                        <input required type="text" name="phone_number" placeholder="-없이" minlength="11" maxlength="11">
                     </div>
                 </div>
                 <div class="submit_btn_container">
@@ -40,5 +35,4 @@
             </form>
         </section>
     </main>
-    <!-- <script src="../js/search_id_page.js"></script> -->
 </body>

@@ -171,6 +171,9 @@
     height: 30px;
     margin-left: 10px;
 }
+.schedule_item.shedule_termination button{
+    display: none;
+}
 .modify_schedule_btn{
     background-color: var(--green_btn_color);
 }

@@ -141,7 +141,7 @@
             <div class="diary_container">
                 <form action="../module/add_schedule.jsp" class="schedule_form">
                     <div class="schedule_date_time_input_container">
-                        <input required type="datetime-local" name="datetime">
+                        <input required type="datetime-local" name="datetime" min="1970-01-01T00:01" max="2038-01-19T03:14">
                         <!-- <input required type="time" name="time">  -->
                     </div>
                     <div class="schedule_contents_input_container">
@@ -182,6 +182,6 @@
         addSchedule(<%=scheduleData%>);
         viewDiaryAuth(<%=viewAuth%>);
         viewStateSet(<%=viewState%>);
-        console.log('<%=userPositionNumber%>','<%=selectedUserPositionNumber%>')
+        //console.log('<%=userPositionNumber%>','<%=selectedUserPositionNumber%>')
     </script>
 </body>

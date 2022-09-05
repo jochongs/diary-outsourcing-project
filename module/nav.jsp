@@ -5,7 +5,11 @@
             <button onclick="clickLogoutBtnEvent()">로그아웃</button>   
         </div>
         <div class="sidebar_btn_container">
-            <button onclick="openSidebar()">-</button>
+            <button class="menu_btn" onclick="openSidebar()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </button>
         </div>
     </div>
-</nav>
+</nav>      

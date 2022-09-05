@@ -41,14 +41,14 @@
         loginState = true;
     }
 %> 
-    <script>
-        const loginState = <%=loginState%>;
-        if(loginState === true){
-            //로그인성공
-            location.href = "../page/diary_page.jsp";
-        }else{
-            //로그인 실패
-            alert("아이디또는 비밀번호가 잘못되었습니다.");
-            location.href = '../page/login_page.jsp';
-        }
-    </script>
+<script>
+    const loginState = <%=loginState%>;
+    if(loginState === true){
+        //로그인성공
+        location.href = "../page/diary_page.jsp";
+    }else{
+        //로그인 실패
+        alert("아이디또는 비밀번호가 잘못되었습니다.");
+        location.href = '../page/login_page.jsp';
+    }
+</script>
