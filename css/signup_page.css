@@ -43,7 +43,6 @@ form>div>div:nth-child(2) input,select{
 .check_id_btn{
     position: absolute;
     right: 0%;
-    transform: translateX(110%);
     height: 40px;
     width: 100px;
     border: none;
@@ -52,6 +51,8 @@ form>div>div:nth-child(2) input,select{
     color: white;
     font-weight: bolder;
     background-color: var(--main_color);
+
+    transform: translateX(110%);
 }
 .submit_btn_container{
     width: 100%;
@@ -67,4 +68,21 @@ form>div>div:nth-child(2) input,select{
     color: white;
     border-radius: 6px;
     margin-top: 10px;
+}
+
+@media screen and (min-width : 0px) and (max-width : 1000px){
+    .check_id_btn{
+        left: 0;
+        bottom: 0;
+        transform: translateY(110%);
+    }
+    .id_input_container{
+        margin-bottom: 30px;
+    }
+}
+@media screen and (min-width : 1000px) and (max-width : 1200px){
+   
+}
+@media screen and (min-width : 1200px) {
+   
 }

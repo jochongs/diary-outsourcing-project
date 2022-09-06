@@ -10,8 +10,16 @@
     margin-left: 10px;
     font-weight: bold;
 }
+.diary_title{
+    display: flex;
+    align-items: center;
+}
 .diary_title span{
     display: flex;
+    align-items: center;
+}
+.diary_title span p{
+    font-size: 24px;
 }
 .diary_title_container button{
     background: none;
@@ -33,9 +41,6 @@
     border-top: 20px solid transparent;
     border-bottom: 20px solid transparent;
     border-right: none;
-}
-.diary_title{
-    display: flex;
 }
 .diary_container{
     width: 100%;

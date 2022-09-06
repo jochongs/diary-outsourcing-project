@@ -20,11 +20,13 @@
     String userId = (String)session.getAttribute("userId");
     String selectedUser = request.getParameter("selectedUser");
     String selectedUserName = ""; //선택된 유저의 이름
+    String selectedUserPositionNumber = "255"; //선택된 유저의 포지션 넘버
+    String selectedUserTeamCode = "";
     String diaryUserName = ""; //현재 볼 다이어리 유저 이름
     String diaryUserId = ""; //현재 볼 다이어리 유저 아이디
     boolean viewAuth = false;
     boolean viewState = false; //false : 내 것을 보고 있음 , true : 다른 사람 것을 보고 있음
-    String selectedUserPositionNumber = "255";
+    
     ArrayList<ArrayList<String>> scheduleData = new ArrayList<ArrayList<String>>();  //2차원 배열의 껍데기 생성
 
     if(selectedUser == null || selectedUser.equals(userId)){
@@ -42,6 +44,7 @@
         while(result3.next()){
             selectedUserPositionNumber = result3.getString(3);
             selectedUserName = result3.getString(2);
+            selectedUserTeamCode = result3.getString(4);
         }
         diaryUserId = selectedUser;
     }
@@ -70,7 +73,7 @@
 
 
     //권한 확인
-    if(viewAuth==false && Integer.parseInt(userPositionNumber) < Integer.parseInt(selectedUserPositionNumber)){
+    if(viewAuth==false && Integer.parseInt(userPositionNumber) < Integer.parseInt(selectedUserPositionNumber) && userTeamCode.equals(selectedUserTeamCode)){
         viewAuth = true;
         viewState = true;
         diaryUserId=selectedUser;
@@ -112,9 +115,7 @@
     }
 %>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%@ include file="../module/meta.jsp"%>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
@@ -125,7 +126,7 @@
     <link rel="stylesheet" href="../css/sidebar.css">
     <title>다이어리 페이지</title>
 </head>
-<body style="overflow-x:hidden">
+<bodys>
     <%@ include file="../module/sidebar.jsp"%>
     <%@ include file="../module/nav.jsp" %>
     <main>

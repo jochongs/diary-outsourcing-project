@@ -29,7 +29,16 @@
     justify-content: space-between;
     margin-top: 10px;
 }
-.page_move_btn_container button{
+.signup_btn_container{
+    /* 얘는 왜 플렉스 줘야함?진짜 이해가 안가네 */
+    display: flex;
+}
+.search_btn_container{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.page_move_btn_container button{    
     background: none;
     border: none;
 }

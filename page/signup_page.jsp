@@ -44,9 +44,7 @@
     }
 %> 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%@ include file="../module/meta.jsp"%>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
@@ -69,8 +67,8 @@
                     <div class="input_container">
                         <input class="check_id_input" required type="text" name="check_id" placeholder="abc123" minlength="6" maxlength="12">
                         <input type="hidden" value="none" class="hidden_id_input" name="id">
+                        <button class="check_id_btn" type="button" onclick="clickCheckIdBtnEvent()">중복확인</button>
                     </div>
-                    <button class="check_id_btn" type="button" onclick="clickCheckIdBtnEvent()">중복확인</button>
                 </div>
                 <div class="pw_input_container">
                     <div class="input_name_container">

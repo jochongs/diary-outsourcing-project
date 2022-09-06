@@ -1,3 +1,11 @@
+html{
+    overflow-x: hidden;
+}
+body{
+    margin: 0%;
+    position: relative;
+    overflow-x: hidden;
+}
 main{
     display: flex;
     flex-direction: column;
@@ -16,13 +24,10 @@ h1,h2,h3,h4,form,p{
 }
 button{
     cursor: pointer;
+    color: var(--font_color);
 }
 h1,p,div,a,input,button{
     font-family: var(--main_font);
-}
-body{
-    margin: 0%;
-    overflow-x: hidden;
 }
 input:focus{
     outline: none;
@@ -35,4 +40,8 @@ textarea:focus{
 }
 .hidden{
     display: none;
+}
+select{
+    color: var(--font_color);
+    background-color: unset;
 }

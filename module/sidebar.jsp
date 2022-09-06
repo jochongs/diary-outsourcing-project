@@ -20,8 +20,8 @@
         sidebarAccountData.add(tmpData);
     }
 %> 
-<div class="sidebar_background" onclick="clickSidebarBackgroundEvent()"></div>
-<div class="sidebar_container">
+<div class="sidebar_background unactive" onclick="clickSidebarBackgroundEvent()"></div>
+<div class="sidebar_container unactive">
     <div class="sidebar_header">
         <div class="sidebar_close_btn_container">
             <button class="sidebar_close_btn" onclick="clickSidebarBackgroundEvent()">X</button>

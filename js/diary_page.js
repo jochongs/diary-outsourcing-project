@@ -8,8 +8,8 @@ const addSchedule = (unorganizedScheduleArray)=>{
         const scheduleContainer = document.querySelector('.schedule_container');
         scheduleContainer.append(emptyP);
     }else{
-        const year = (new Date(unorganizedScheduleArray[0][1]).getFullYear());
-        const month = (new Date(unorganizedScheduleArray[0][1]).getMonth())+1;
+        const year = (new Date(unorganizedScheduleArray[0][1].replaceAll('-','/')).getFullYear());
+        const month = (new Date(unorganizedScheduleArray[0][1].replaceAll('-','/')).getMonth())+1;
         const scheduleArray = setSheduleArray(unorganizedScheduleArray);
         scheduleArray.map((dateScheduleArray,date)=>{
             if(dateScheduleArray.length !== 0){
@@ -58,7 +58,7 @@ const addSchedule = (unorganizedScheduleArray)=>{
 
                     //넣어줄 시간 값 생성
                     const nowTime = new Date();
-                    const scheduleDate = new Date(schedule[1]);
+                    const scheduleDate = new Date(schedule[1].replaceAll('-','/'));
                     let timeString = "오전";
                     let hour = scheduleDate.getHours();
                     const minutes = scheduleDate.getMinutes();
@@ -109,7 +109,7 @@ const addSchedule = (unorganizedScheduleArray)=>{
     }
 
     unorganizedScheduleArray.map((schedule)=>{
-        const date = new Date(schedule[1]);
+        const date = new Date(schedule[1].replaceAll('-','/'));
         organizedScheduleArray[date.getDate()-1].push(schedule);
     })
     return organizedScheduleArray;
