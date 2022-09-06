@@ -60,6 +60,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
     width: calc(100% - 80px);
@@ -67,6 +68,7 @@
     border-radius: 12px;
 }
 .schedule_date_time_input_container input{
+    width: 200px;
     height: 24px;
 }
 .schedule_form>div{
@@ -106,7 +108,6 @@
     width: calc(100% - 80px);
     background-color: var(--background_color);
     border-radius: 12px;
-    margin-top: 20px;
 }
 .schedule_date_container{
     display: flex;

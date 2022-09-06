@@ -15,9 +15,8 @@ window.onload = ()=>{
         const positionSelect = document.querySelector('.position_select');
         const position_code = positionSelect.options[teamSelect.selectedIndex].value;
 
-        console.log(id,pw,name,phoneNumber,position_code,team_code);
-
         const pwReg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,12}$/;
+        const phoneNumberReg = /^[0-9]+$/;
         if(id==='none'){
             alert("아이디 중복확인을 눌러주세요");
             return 0;
@@ -37,6 +36,9 @@ window.onload = ()=>{
         if(phoneNumber.length !== 11){
             alert('핸드폰 번호를 정확하게 입력해주세요. -없이 11자리입니다.');
             return 0;
+        }
+        if(!phoneNumberReg.test(phoneNumber)){
+            alert("핸드폰번호는 숫자만 입력할 수 있습니다.");
         }
         if(position_code.length===0){
             alert('직급을 선택해주세요');

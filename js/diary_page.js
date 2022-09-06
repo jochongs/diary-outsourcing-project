@@ -1,3 +1,9 @@
+window.onload = ()=>{
+    const date = new Date();
+    const dateString = `${date.getFullYear()}-${(date.getMonth()-1).toString().padStart(2,0)}-${date.getDate().toString().padStart(2,0)}T${date.getHours().toString().padStart(2,0)}:${date.getMinutes().toString().padStart(2,0)}`;
+    console.log(dateString);
+    document.querySelector('.schedule_date_time_input_container input').value = dateString;
+}
 //스케쥴을 알맞은 위치에 넣어줌
 const addSchedule = (unorganizedScheduleArray)=>{
     if(unorganizedScheduleArray.length === 0){
